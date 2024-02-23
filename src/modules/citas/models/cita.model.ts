@@ -10,7 +10,7 @@ export class Cita {
             unique: true,
             required: true
         })
-        id: Number
+        id: String
         
         @Prop()
         name: String
