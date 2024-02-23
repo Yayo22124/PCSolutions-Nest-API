@@ -44,7 +44,7 @@ export class CitasController {
         return this.citaService.create(newCita);
     }
 
-    @Delete()
+    @Delete(':id')
     async deleteCita(@Param('id') id: string) {
         return this.citaService.deleteOne(id);
     }
