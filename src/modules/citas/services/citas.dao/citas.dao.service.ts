@@ -33,4 +33,10 @@ export class CitasDaoService {
         const updatedTicket = this.citaModel.findOneAndUpdate({id}, updatedCita);
         return updatedTicket;
     }
+
+    // deleteOne
+    async deleteOne(id: string) {
+        const deletedTicket = this.citaModel.findOneAndDelete({id});
+        return deletedTicket;
+    }
 }

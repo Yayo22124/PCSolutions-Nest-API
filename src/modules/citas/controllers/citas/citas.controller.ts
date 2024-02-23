@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Param, Post, Put, Res } from '@nestjs/common';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, Post, Put, Res } from '@nestjs/common';
 
 import { CitasDaoService } from '../../services/citas.dao/citas.dao.service';
 import { iCita } from '../../../../core/interfaces/cita/cita.interface';
@@ -42,6 +42,11 @@ export class CitasController {
     @Post()
     async insertCita(@Body() newCita: iCita) {
         return this.citaService.create(newCita);
+    }
+
+    @Delete()
+    async deleteCita(@Param('id') id: string) {
+        return this.citaService.deleteOne(id);
     }
 
     @Put(':id')
