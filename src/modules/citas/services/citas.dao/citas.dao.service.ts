@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Cita, CitaDocument } from '../../models/cita.model';
 import { Model } from 'mongoose';
-import { iCita } from 'src/core/interfaces/cita/cita.interface';
+import { iCita } from '../../../../core/interfaces/cita/cita.interface';
 
 @Injectable()
 export class CitasDaoService {
