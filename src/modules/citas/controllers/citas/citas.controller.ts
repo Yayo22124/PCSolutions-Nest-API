@@ -45,20 +45,30 @@ export class CitasController {
     }
 
     @Delete(':id')
-    async deleteCita(@Param('id') id: string) {
-        return this.citaService.deleteOne(id);
+    async deleteCita(@Param('id') id: string, @Res() res: Response) {
+        this.citaService.deleteOne(id)
+        .then(result => {
+            if (result) {
+                res.json({
+                    msg: `Cita with id: ${id}, was succesfully deleted.`
+                })
+            } else {
+                res.status(HttpStatus.NOT_FOUND).json({
+                    msg: `Cita with id: ${id}, not found.`,
+                  });
+            }
+        })
+        .catch(err => {
+            console.error(err);
+      res.json({
+        msg: 'Error updating Cita.',
+      });
+        })
     }
 
     @Put(':id')
     @HttpCode(HttpStatus.OK)
     async updateCita(@Param('id') id: string, @Body() updatedCita: iCita, @Res() res: Response) {
-
-        if (id) {
-            // Si 'id' no es un número válido, devuelve un error
-            return res.json({
-              msg: 'El parámetro "id" debe ser un número válido.',
-            });
-          }
 
         this.citaService.updateOne(id, updatedCita)
         .then(result => {
