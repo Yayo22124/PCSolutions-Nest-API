@@ -16,7 +16,7 @@ export class CitasDaoService {
     }
 
     // GetOne
-    async getOne(id: number): Promise<iCita | null> {
+    async getOne(id: string): Promise<iCita | null> {
         const cita = await this.citaModel.findOne({ id }).exec();
         return cita ?? null;
     }
@@ -29,7 +29,7 @@ export class CitasDaoService {
     }
 
     // updateOne
-    async updateOne(id: Number, updatedCita: iCita) {
+    async updateOne(id: string, updatedCita: iCita) {
         const updatedTicket = this.citaModel.findOneAndUpdate({id}, updatedCita);
         return updatedTicket;
     }

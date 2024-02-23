@@ -25,7 +25,7 @@ export class CitasController {
 
     // Get One Cita
     @Get(':id')
-    async getOneCita(@Param('id') id: number, @Res() res: Response) {
+    async getOneCita(@Param('id') id: string, @Res() res: Response) {
         this.citaService.getOne(id)
         .then(result => {
             if (result) {
@@ -46,10 +46,9 @@ export class CitasController {
 
     @Put(':id')
     @HttpCode(HttpStatus.OK)
-    async updateCita(@Param('id') foilParam: string, @Body() updatedCita: iCita, @Res() res: Response) {
-        const id = parseInt(foilParam, 10);
+    async updateCita(@Param('id') id: string, @Body() updatedCita: iCita, @Res() res: Response) {
 
-        if (isNaN(id)) {
+        if (id) {
             // Si 'id' no es un número válido, devuelve un error
             return res.json({
               msg: 'El parámetro "id" debe ser un número válido.',
